@@ -27,3 +27,26 @@ npm i eslint@8.13.0 -DE
 - babel-loader@8.2.4
 - css-loader@6.7.1
 - style-loader@3.3.1
+
+!!!!! Установка этих версий привела к ошибкам. Попробую установить версии из последней демо-программы "Taskmanager"
+
+## Зависимости приложения (`dependencies`)
+
+- dayjs@1.11.7
+- flatpickr@4.6.13
+- he@1.2.0
+
+## Зависимости для разработки (`devDependencies`)
+
+- eslint@8.38.0
+- eslint-config-htmlacademy@9.0.0
+- webpack@5.79.0
+- webpack-cli@5.0.1
+- webpack-dev-server@4.13.3
+- copy-webpack-plugin@11.0.0
+- html-webpack-plugin@5.5.1
+- @babel/core@7.21.4
+- @babel/preset-env@7.21.4
+- babel-loader@9.1.2
+- css-loader@6.7.3
+- style-loader@3.3.2
