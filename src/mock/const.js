@@ -41,6 +41,7 @@ const genres = [
   'Thriller',
 ];
 
+const countries = ['USA', 'Russia', 'Germany', 'Finland', 'France', 'Spain', 'Italy', 'China', 'Japan'];
 
 const descriptions = [
   'The Martians Momar ("Mom Martian") and Kimar ("King Martian") are worried that their children Girmar ("Girl Martian") and Bomar ("King Martian") are worried that their children Girmar ("Girl Martian").',
@@ -49,5 +50,38 @@ const descriptions = [
   'The Man with the Golden Arm, American film drama, released in 1955, that broke new ground with its realistic look at the life of a heroin addict. The film was based on the novel of the same name by Nelson Algren and starred Frank Sinatra as Frankie Machine, a struggling addict who gets clean while in prison. After his release, he hopes to become a drummer but is instead pressured to return to his career as a card dealer.'
 ];
 
+const comment = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet varius magna, non porta ligula feugiat eget.';
 
-export { titles, posters, genres, descriptions };
+const names = [
+  'Alice',
+  'Ivan',
+  'Sergey',
+  'Dakota',
+  'Nevada',
+  'Fedor'
+];
+
+const surnames = [
+  'Makoveev',
+  'Ivanov',
+  'Romanov',
+  'Lee',
+  'James',
+  'Walker'
+];
+
+const emotions = ['smile', 'sleeping', 'puke', 'angry'];
+
+const commentdates = [
+  '2019-05-11T00:00:00.000Z', // 01.05.2023
+  '2019-05-26T00:00:00.000Z', // 15.06.2023
+  '2019-06-10T00:00:00.000Z', // 20.07.2023
+  '2019-07-25T00:00:00.000Z', // 25.08.2023
+  '2019-09-09T00:00:00.000Z', // 30.09.2023
+  '2019-10-04T00:00:00.000Z', // 05.10.2023
+  '2019-11-09T00:00:00.000Z', // 10.11.2023
+  '2019-12-14T00:00:00.000Z', // 15.12.2023
+  '2020-01-19T00:00:00.000Z', // 20.01.2024
+  '2020-02-23T00:00:00.000Z' // 25.02.2024
+];
+export { titles, posters, genres, countries, descriptions, comment, names, surnames, emotions, commentdates };

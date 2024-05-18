@@ -21,5 +21,23 @@ const formatMinutesToTime = (minutes) => {
 const formatStringToYear = (date) =>
   new Date(date).getFullYear();
 
+const formatStringToDate = (dateString) => {
+  const date = new Date(dateString);
+  const day = date.getDate();
+  const month = date.getMonth();
+  const year = date.getFullYear();
+  const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const formattedDate = `${day} ${monthNames[month]} ${year}`;
+  return formattedDate;
+};
 
-export { getRandomInteger, getRandomValue, formatMinutesToTime, formatStringToYear};
+const formatDateToYearMonthDay = (dateString) => {
+  const date = new Date(dateString);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // Добавляем leading zero, если месяц состоит из одной цифры
+  const day = String(date.getDate()).padStart(2, '0'); // Добавляем leading zero, если день состоит из одной цифры
+  const formattedDate = `${year}/${month}/${day}`;
+  return formattedDate;
+};
+
+export { getRandomInteger, getRandomValue, formatMinutesToTime, formatStringToYear, formatStringToDate, formatDateToYearMonthDay };
