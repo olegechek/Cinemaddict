@@ -6,18 +6,20 @@ const createFooterStatisticsTemplate = () => '<p>130 291 movies inside</p>';
 
 // Класс для управления элементом статистики футера
 export default class FooterStatisticsView {
-  getTemplate() {
+  #element = null;
+
+  get template() {
     return createFooterStatisticsTemplate();
   }
 
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
+  get element() {
+    if (!this.#element) {
+      this.#element = createElement(this.template);
     }
-    return this.element;
+    return this.#element;
   }
 
   removeElement() {
-    this.element = null;
+    this.#element = null;
   }
 }

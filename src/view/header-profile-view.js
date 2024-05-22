@@ -6,19 +6,20 @@ const createHeaderProfileTemplate = () => '<section class="header__profile profi
 
 // Клас - он же сам компонент
 export default class HeaderProfileView {
-  getTemplate() {
-    return createHeaderProfileTemplate(); // Кстати, можно не создавать отдельную createTemplate функцию, а сразу возвращать строку с HTML-разметкой компонента из метода класса
+  #element = null;
+
+  get template() {
+    return createHeaderProfileTemplate();
   }
 
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
+  get element() {
+    if (!this.#element) {
+      this.#element = createElement(this.template);
     }
-
-    return this.element;
+    return this.#element;
   }
 
   removeElement() {
-    this.element = null;
+    this.#element = null;
   }
 }

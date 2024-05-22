@@ -9,32 +9,38 @@ import FilmDetailsView from '../view/film-details-view.js';
 import { render } from '../render.js';
 
 export default class FilmsPresenter {
-  siteBodyElement = document.querySelector('body');
-  filmsComponent = new FilmsView();
-  filmsListComponent = new FilmsListView();
-  filmsListContainerComponent = new FilmsListContainerView();
-  filmButtonMoreComponent = new FilmButtonMoreView();
+  #siteBodyElement = document.querySelector('body');
+  #filmsComponent = new FilmsView();
+  #filmsListComponent = new FilmsListView();
+  #filmsListContainerComponent = new FilmsListContainerView();
+  #filmButtonMoreComponent = new FilmButtonMoreView();
 
-  filmDetailsViewComponent = new FilmDetailsView();
+  #filmDetailsViewComponent = new FilmDetailsView();
+
+  #container = null;
+  #filmsModel = null;
+  #commentsModel = null;
+  #filmModels = [];
+  #commentModels = [];
 
   init = (container, filmsModel, commentsModel) => {
-    this.container = container;
-    this.filmsModel = filmsModel;
-    this.commentsModel = commentsModel;
+    this.#container = container;
+    this.#filmsModel = filmsModel;
+    this.#commentsModel = commentsModel;
 
-    this.filmModels = [...this.filmsModel.getFilms()];
-    this.commentModels = [...this.commentsModel.getComments()];
+    this.#filmModels = [...this.#filmsModel.films];
+    this.#commentModels = [...this.#commentsModel.comments];
 
-    render(this.filmsComponent, this.container);
-    render(this.filmsListComponent, this.filmsComponent.getElement());
-    render(this.filmsListContainerComponent, this.filmsListComponent.getElement());
+    render(this.#filmsComponent, this.#container);
+    render(this.#filmsListComponent, this.#filmsComponent.element);
+    render(this.#filmsListContainerComponent, this.#filmsListComponent.element);
 
-    for (let i = 0; i < this.filmModels.length; i++) {
-      render(new FilmCardView(this.filmModels[i]), this.filmsListContainerComponent.getElement());
+    for (let i = 0; i < this.#filmModels.length; i++) {
+      render(new FilmCardView(this.#filmModels[i]), this.#filmsListContainerComponent.element);
     }
-    render(this.filmButtonMoreComponent, this.filmsListComponent.getElement());
+    render(this.#filmButtonMoreComponent, this.#filmsListComponent.element);
 
-    render(new FilmDetailsView(this.filmModels[0], this.commentModels), this.siteBodyElement);
+    render(new FilmDetailsView(this.#filmModels[0], this.#commentModels), this.#siteBodyElement);
   };
 }
 

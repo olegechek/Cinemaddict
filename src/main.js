@@ -4,16 +4,10 @@ import SortView from './view/sort-view.js';
 import FooterStatisticsView from './view/footer-statistics-view.js';
 import FilmsModel from './model/films-model.js';
 import CommentsModel from './model/comments-model.js';
-/*import FilmDetailsView from './view/film-details-view.js';*/
 
 import FilmsPresenter from './presenter/film-presenter.js';
 
 import {render} from './render.js';
-
-
-/*const siteBodyElement = document.querySelector('body');
-
-render(new FilmDetailsView(), siteBodyElement);*/
 
 
 const siteHeaderElement = document.querySelector('.header');

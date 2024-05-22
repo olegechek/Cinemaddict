@@ -126,23 +126,29 @@ const createFilmDetailsTemplate = (filmDetailes, commentDetailes) => {
 `);
 };
 export default class FilmDetailsView {
-  constructor(filmDetailes, commentDetailes) {
-    this.filmDetailes = filmDetailes;
-    this.commentDetailes = commentDetailes;
+
+  #element = null;
+  #filmDetailes = null;
+  #commentDetailes = null;
+
+  constructor (filmDetailes, commentDetailes) {
+    this.#filmDetailes = filmDetailes;
+    this.#commentDetailes = commentDetailes;
   }
 
-  getTemplate() {
-    return createFilmDetailsTemplate(this.filmDetailes, this.commentDetailes);
+
+  get template() {
+    return createFilmDetailsTemplate(this.#filmDetailes, this.#commentDetailes);
   }
 
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
+  get element() {
+    if (!this.#element) {
+      this.#element = createElement(this.template);
     }
-    return this.element;
+    return this.#element;
   }
 
   removeElement() {
-    this.element = null;
+    this.#element = null;
   }
 }
