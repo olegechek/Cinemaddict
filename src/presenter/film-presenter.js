@@ -14,8 +14,7 @@ export default class FilmsPresenter {
   #filmsListComponent = new FilmsListView();
   #filmsListContainerComponent = new FilmsListContainerView();
   #filmButtonMoreComponent = new FilmButtonMoreView();
-
-  #filmDetailsViewComponent = new FilmDetailsView();
+  #filmDetailsComponent = null;
 
   #container = null;
   #filmsModel = null;
@@ -35,13 +34,36 @@ export default class FilmsPresenter {
     render(this.#filmsListComponent, this.#filmsComponent.element);
     render(this.#filmsListContainerComponent, this.#filmsListComponent.element);
 
+
     for (let i = 0; i < this.#filmModels.length; i++) {
-      render(new FilmCardView(this.#filmModels[i]), this.#filmsListContainerComponent.element);
+      this.#renderFilm(this.#filmModels[i], this.#filmsListContainerComponent);
     }
     render(this.#filmButtonMoreComponent, this.#filmsListComponent.element);
 
-    render(new FilmDetailsView(this.#filmModels[0], this.#commentModels), this.#siteBodyElement);
+    //render(new FilmDetailsView(this.#filmModels[0], this.#commentModels), this.#siteBodyElement);
   };
+
+  #renderFilm(film, myContainer) {
+    const filmCardComponent = new FilmCardView(film);
+    const linkFilmCardElement = filmCardComponent.element.querySelector('a');
+
+    linkFilmCardElement.addEventListener('click', () => {
+      this.#renderFilmDetails(film, this.#commentModels);
+    });
+    render(filmCardComponent, myContainer.element);
+  }
+
+  #renderFilmDetails(film, comments) {
+    this.#filmDetailsComponent = new FilmDetailsView(film, comments);
+    const closeButtonFilmDetailsElement = this.#filmDetailsComponent.element.querySelector('.film-details__close-btn');
+    closeButtonFilmDetailsElement.addEventListener('click', () => {
+      this.#filmDetailsComponent.element.remove();
+      this.#filmDetailsComponent = null;
+    });
+
+
+    render(this.#filmDetailsComponent, this.#siteBodyElement);
+  }
 }
 
 
