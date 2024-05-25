@@ -1,3 +1,5 @@
 const FILM_COUNT = 5;
 
-export {FILM_COUNT};
+const FILM_COUNT_PER_STEP = 5;
+
+export {FILM_COUNT, FILM_COUNT_PER_STEP};

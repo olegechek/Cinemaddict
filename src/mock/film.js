@@ -24,7 +24,7 @@ const generateFilm = () => ({
 });
 
 const generateFilms = () => {
-  const films = Array.from({ length: 5 }, generateFilm);
+  const films = Array.from({ length: 25 }, generateFilm);
 
   let totalCommentsCount = 0;
 

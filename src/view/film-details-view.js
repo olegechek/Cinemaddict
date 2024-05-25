@@ -5,11 +5,7 @@ import { createCommentTemplate } from './film-details-comments-template.js';
 const createFilmDetailsTemplate = (filmDetailes, commentDetailes) => {
   const { title, totalRating, director, writers, actors, poster, release, runtime, description, comments } = filmDetailes;
 
-  const commentIdsSet = new Set(comments.map((id) => Number(id)));
-
-  const filteredComments = commentDetailes.filter((comment) => commentIdsSet.has(Number(comment.id)));
-
-  const commentsTemplate = createCommentTemplate(filteredComments);
+  const commentsTemplate = createCommentTemplate(commentDetailes);
 
   return (`
  <section class="film-details">
