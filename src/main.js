@@ -1,6 +1,5 @@
 import HeaderProfileView from './view/header-profile-view.js';
 import MainNavigationView from './view/main-navigation-view.js';
-import SortView from './view/sort-view.js';
 import FooterStatisticsView from './view/footer-statistics-view.js';
 import FilmsModel from './model/films-model.js';
 import CommentsModel from './model/comments-model.js';
@@ -18,8 +17,6 @@ render(new HeaderProfileView(), siteHeaderElement);
 const siteMainElement = document.querySelector('.main');
 
 render(new MainNavigationView(), siteMainElement);
-
-render(new SortView(), siteMainElement);
 
 const filmsModel = new FilmsModel();
 
