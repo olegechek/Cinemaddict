@@ -1,6 +1,4 @@
-
-// Импортируем функцию createElement из файла render.js
-import { createElement } from '../render.js';
+import AbstractView from '../framework/view/abstract-view';
 
 // Функция для создания HTML-разметки навигационного меню
 const createMainNavigationTemplate = () => `
@@ -13,20 +11,9 @@ const createMainNavigationTemplate = () => `
 `;
 
 // Класс для управления эл��ментом навигации
-export default class MainNavigationView {
-  #element = null;
+export default class MainNavigationView extends AbstractView {
+
   get template() {
     return createMainNavigationTemplate();
-  }
-
-  get element() {
-    if (!this.#element) {
-      this.#element = createElement(this.template);
-    }
-    return this.#element;
-  }
-
-  removeElement() {
-    this.#element = null;
   }
 }

@@ -1,4 +1,4 @@
-import { createElement } from '../render.js';
+import AbstractView from '../framework/view/abstract-view.js';
 import { formatStringToDate } from '../utils.js';
 import { createCommentTemplate } from './film-details-comments-template.js';
 
@@ -121,30 +121,18 @@ const createFilmDetailsTemplate = (filmDetailes, commentDetailes) => {
 </section>
 `);
 };
-export default class FilmDetailsView {
+export default class FilmDetailsView extends AbstractView {
 
-  #element = null;
   #filmDetailes = null;
   #commentDetailes = null;
 
-  constructor (filmDetailes, commentDetailes) {
+  constructor(filmDetailes, commentDetailes) {
+    super();
     this.#filmDetailes = filmDetailes;
     this.#commentDetailes = commentDetailes;
   }
 
-
   get template() {
     return createFilmDetailsTemplate(this.#filmDetailes, this.#commentDetailes);
-  }
-
-  get element() {
-    if (!this.#element) {
-      this.#element = createElement(this.template);
-    }
-    return this.#element;
-  }
-
-  removeElement() {
-    this.#element = null;
   }
 }

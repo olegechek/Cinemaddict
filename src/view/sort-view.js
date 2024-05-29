@@ -1,5 +1,5 @@
 // Импортируем функцию createElement из файла render.js
-import { createElement } from '../render.js';
+import AbstractView from '../framework/view/abstract-view.js';
 
 // Функция для создания HTML-разметки сортировки
 const createSortTemplate = () => `
@@ -11,21 +11,9 @@ const createSortTemplate = () => `
 `;
 
 // Класс для управления элементом сортировки
-export default class SortView {
-  #element = null;
+export default class SortView extends AbstractView {
 
   get template() {
     return createSortTemplate();
-  }
-
-  get element() {
-    if (!this.#element) {
-      this.#element = createElement(this.template);
-    }
-    return this.#element;
-  }
-
-  removeElement() {
-    this.#element = null;
   }
 }
