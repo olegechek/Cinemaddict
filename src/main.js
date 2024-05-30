@@ -6,7 +6,7 @@ import CommentsModel from './model/comments-model.js';
 
 import FilmsPresenter from './presenter/film-presenter.js';
 
-import {render} from './render.js';
+import {render} from './framework/render.js';
 
 
 const siteHeaderElement = document.querySelector('.header');

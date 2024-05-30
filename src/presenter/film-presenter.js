@@ -6,7 +6,7 @@ import FilmCardView from '../view/film-card-view.js';
 import FilmButtonMoreView from '../view/film-button-more-view.js';
 import FilmDetailsView from '../view/film-details-view.js';
 
-import { render } from '../render.js';
+import { render } from '../framework/render.js';
 
 import { FILM_COUNT_PER_STEP } from '/const.js';
 import FilmsListEmptyView from '../view/films-list-empty-view.js';
@@ -58,9 +58,7 @@ export default class FilmsPresenter {
 
     if (this.#filmModels.length > FILM_COUNT_PER_STEP) {
       render(this.#filmButtonMoreComponent, this.#filmsListComponent.element);
-      this.#filmButtonMoreComponent
-        .element
-        .addEventListener('click', (evt) => this.#filmButtonMoreClickHandler(evt));
+      this.#filmButtonMoreComponent.setButtonClickHandler(() => this.#filmButtonMoreClickHandler());
     }
   }
 
@@ -79,26 +77,25 @@ export default class FilmsPresenter {
 
 
   #renderFilm(film, myContainer) {
-    const filmCardComponent = new FilmCardView(film);
-    const linkFilmCardElement = filmCardComponent.element.querySelector('a');
-
-    linkFilmCardElement.addEventListener('click', () => {
+    this.filmCardComponent = new FilmCardView(film);
+    this.filmCardComponent.setFilmCardClickHandler(() => {
       this.#addFilmDetailsComponent(film);
       document.addEventListener('keydown', this.#onEscKeyDown);
     });
-    render(filmCardComponent, myContainer.element);
+
+    render(this.filmCardComponent, myContainer.element);
   }
 
   #renderFilmDetails(film) {
 
     const comments = this.#commentsModel.separate(film);
     this.#filmDetailsComponent = new FilmDetailsView(film, comments);
-
-    const closeButtonFilmDetailsElement = this.#filmDetailsComponent.element.querySelector('.film-details__close-btn');
-    closeButtonFilmDetailsElement.addEventListener('click', () => {
+    this.#filmDetailsComponent.setFilmDetailsCloseButtonClickHandler(() => {
       this.#removeFilmDetailsComponent();
       document.removeEventListener('keydown', this.#onEscKeyDown);
     });
+
+
     render(this.#filmDetailsComponent, this.#siteBodyElement);
   }
 
