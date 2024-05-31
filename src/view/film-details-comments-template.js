@@ -1,4 +1,4 @@
-import { formatDateToYearMonthDay } from '../utils.js';
+import { formatDateToYearMonthDay } from '../utils/common.js';
 
 const createCommentTemplate = (filteredComments) => {
 

@@ -1,5 +1,5 @@
 import AbstractView from '../framework/view/abstract-view.js';
-import { formatStringToYear } from '../utils.js';
+import { formatStringToYear } from '../utils/common.js';
 
 const createFilmCardTemplate = (generatedFilm) => {
   const { title, totalRating, poster, release, runtime, genre, description, comments } = generatedFilm;

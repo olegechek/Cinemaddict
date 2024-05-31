@@ -1,5 +1,22 @@
-import { getRandomInteger, getRandomValue, formatMinutesToTime } from '../utils.js';
-import { titles, posters, genres, descriptions } from './const.js';
+import { getRandomInteger, getRandomValue, formatMinutesToTime } from '../utils/common.js';
+import { titles, posters, genres, descriptions, commentdates } from './const.js';
+
+const getWatchingDate = () => {
+  const watchingDate = getRandomValue(commentdates);
+  return watchingDate;
+};
+
+
+const getRandomUserDetails = () => {
+  const alreadyWatched = Boolean(getRandomInteger(0, 1));
+  const userDetails = {
+    watchlist: Boolean(getRandomInteger(0, 1)),
+    alreadyWatched,
+    watchingDate: (alreadyWatched) ? getWatchingDate() : null,
+    favorite: Boolean(getRandomInteger(0, 1))
+  };
+  return userDetails;
+};
 
 const generateFilm = () => ({
   title: getRandomValue(titles),
@@ -20,11 +37,12 @@ const generateFilm = () => ({
   },
   runtime: formatMinutesToTime(getRandomInteger(60, 180)),
   genre: getRandomValue(genres),
-  description: getRandomValue(descriptions)
+  description: getRandomValue(descriptions),
+  userDetails: getRandomUserDetails()
 });
 
 const generateFilms = () => {
-  const films = Array.from({ length: 13 }, generateFilm);
+  const films = Array.from({ length: 33 }, generateFilm);
 
   let totalCommentsCount = 0;
 
@@ -44,10 +62,9 @@ const generateFilms = () => {
           (_value, commentIndex) => String(totalCommentsCount - commentIndex)
         )
         : [],
-      ... film,
+      ...film,
     };
   });
 };
-
 
 export { generateFilms };

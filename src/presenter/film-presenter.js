@@ -8,7 +8,7 @@ import FilmDetailsView from '../view/film-details-view.js';
 
 import { render } from '../framework/render.js';
 
-import { FILM_COUNT_PER_STEP } from '/const.js';
+import { FILM_COUNT_PER_STEP } from '../const.js';
 import FilmsListEmptyView from '../view/films-list-empty-view.js';
 
 
