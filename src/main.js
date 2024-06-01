@@ -6,6 +6,7 @@ import CommentsModel from './model/comments-model.js';
 import FilmsPresenter from './presenter/film-presenter.js';
 import {render} from './framework/render.js';
 import { getUserStatus } from './utils/user.js';
+import { getFilterStatus } from './utils/filter.js';
 
 
 const siteHeaderElement = document.querySelector('.header');
@@ -15,7 +16,7 @@ const siteFooterStatisticsElement = document.querySelector('.footer__statistics'
 
 const filmsModel = new FilmsModel();
 
-render(new MainNavigationView(), siteMainElement);
+render(new MainNavigationView(getFilterStatus(filmsModel.films)), siteMainElement);
 
 render(new HeaderProfileView(getUserStatus(filmsModel.films)), siteHeaderElement);
 
@@ -26,4 +27,4 @@ const filmsPresenter = new FilmsPresenter();
 
 filmsPresenter.init(siteMainElement, filmsModel, commentsModel);
 
-render(new FooterStatisticsView(), siteFooterStatisticsElement);
+render(new FooterStatisticsView(filmsModel.films.length), siteFooterStatisticsElement);
