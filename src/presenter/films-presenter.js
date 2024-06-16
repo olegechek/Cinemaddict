@@ -6,6 +6,7 @@ import FilmButtonMoreView from '../view/film-button-more-view.js';
 import FilmDetailsView from '../view/film-details-view.js';
 
 import { render } from '../framework/render.js';
+import { updateItem } from '../utils/common.js';
 
 import { FILM_COUNT_PER_STEP } from '../const.js';
 import FilmsListEmptyView from '../view/films-list-empty-view.js';
@@ -25,8 +26,13 @@ export default class FilmsPresenter {
   #container = null;
   #filmsModel = null;
   #commentsModel = null;
+
   #filmModels = [];
-  #films = null;
+
+  #selectedFilm = null;
+
+  #filmPresenter = new Map();
+  #filmDetailsPresenter = null;
 
   #renderedFilmCount = FILM_COUNT_PER_STEP;
 
@@ -41,6 +47,18 @@ export default class FilmsPresenter {
   init = () => {
     this.#filmModels = [...this.#filmsModel.films];
     this.#renderFilmBoard();
+  };
+
+
+  #filmChangeHandler = (updatedFilm) => {
+    this.#filmModels = updateItem(this.#filmModels, updatedFilm);
+    console.log(this.#filmModels);
+    this.#filmPresenter.get(updatedFilm.id).init(updatedFilm);  //!!!!!!!!!!!!!!!!!!!!!!!
+    if (this.#filmDetailsPresenter && this.#selectedFilm.id === updatedFilm.id) {
+      this.#selectedFilm = updatedFilm;
+      this.#renderFilmDetails();
+    }
+
   };
 
 
@@ -79,10 +97,13 @@ export default class FilmsPresenter {
   #renderFilm(film, container) {
     const filmPresenter = new FilmPresenter(
       container,
+      this.#filmChangeHandler,
       this.#addFilmDetailsComponent,
       this.#onEscKeyDown
     );
+    console.log(filmPresenter);
     filmPresenter.init(film);
+    this.#filmPresenter.set(film.id, filmPresenter);
   }
 
 
